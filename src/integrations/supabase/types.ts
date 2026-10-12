@@ -14,7 +14,155 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      grocery_carts: {
+        Row: {
+          confirmed_at: string | null
+          created_at: string
+          estimated_total: number
+          id: string
+          items: Json
+          plan_id: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          confirmed_at?: string | null
+          created_at?: string
+          estimated_total?: number
+          id?: string
+          items?: Json
+          plan_id?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          confirmed_at?: string | null
+          created_at?: string
+          estimated_total?: number
+          id?: string
+          items?: Json
+          plan_id?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grocery_carts_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "meal_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meal_history: {
+        Row: {
+          cooked_on: string
+          created_at: string
+          id: string
+          meal_name: string
+          user_id: string
+        }
+        Insert: {
+          cooked_on?: string
+          created_at?: string
+          id?: string
+          meal_name: string
+          user_id: string
+        }
+        Update: {
+          cooked_on?: string
+          created_at?: string
+          id?: string
+          meal_name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      meal_plans: {
+        Row: {
+          created_at: string
+          dinners: Json
+          estimated_total: number
+          id: string
+          user_id: string
+          week_start: string
+        }
+        Insert: {
+          created_at?: string
+          dinners?: Json
+          estimated_total?: number
+          id?: string
+          user_id: string
+          week_start: string
+        }
+        Update: {
+          created_at?: string
+          dinners?: Json
+          estimated_total?: number
+          id?: string
+          user_id?: string
+          week_start?: string
+        }
+        Relationships: []
+      }
+      pantry_items: {
+        Row: {
+          created_at: string
+          id: string
+          ingredient: string
+          quantity: number
+          unit: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ingredient: string
+          quantity?: number
+          unit?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ingredient?: string
+          quantity?: number
+          unit?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_preferences: {
+        Row: {
+          busy_nights: string[]
+          dietary_tags: string[]
+          servings: number
+          updated_at: string
+          user_id: string
+          weekly_budget: number
+        }
+        Insert: {
+          busy_nights?: string[]
+          dietary_tags?: string[]
+          servings?: number
+          updated_at?: string
+          user_id: string
+          weekly_budget?: number
+        }
+        Update: {
+          busy_nights?: string[]
+          dietary_tags?: string[]
+          servings?: number
+          updated_at?: string
+          user_id?: string
+          weekly_budget?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
